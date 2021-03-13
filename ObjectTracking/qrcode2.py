@@ -6,6 +6,7 @@ import time, sys
 
 misstime = 0                    ##global variable to check how many times of frame it misses
 
+#adapted from https://devpost.com/software/human-following-robot
 
 def findmin(comp1,comp2,comp3,comp4):
     '''find the minimum vale of four variables'''
