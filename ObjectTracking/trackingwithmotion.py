@@ -332,13 +332,12 @@ def decodeDisplay(image):
     barcodes = pyzbar.decode(image)
     flag = 0
     for barcode in barcodes:                                 ##process every capture of frame of camera
-        GPIO.output(18, GPIO.LOW)
+        buzzer.ChangeDutyCycle(0)
         misstime = 0
         flag = 1
         barcodeData = barcode.data.decode("utf-8")
         barcodeType = barcode.type
         if barcodeData == 'asubramanian1219@tamu.edu':         ##check if the information of QRcode mathces
-            buzzer.ChangeDutyCycle(0)
             (p1,p2,p3,p4) = barcode.polygon                 ##get four points from image
             (x, y, w, h) = barcode.rect
             print("Before obstacle")
@@ -472,10 +471,10 @@ if __name__ == '__main__':
     #GPIO.setup(16,GPIO.OUT)
     GPIO.setup(18,GPIO.OUT)   ##18, buzzer
     ##GPIO.output(16, False)
-    buzzer=GPIO.PWM(18,5000)
-    buzzer.start(0)
+    buzzer = GPIO.PWM(18, 5000)
     motor1_speed = GPIO.PWM(12, 1000)
     motor2_speed = GPIO.PWM(13, 1000)
+    buzzer.start(100)
     motor1_speed.start(100)
     motor2_speed.start(100)
     print("Setup ok")
