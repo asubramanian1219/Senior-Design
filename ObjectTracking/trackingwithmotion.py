@@ -189,17 +189,17 @@ def change_speed1(d,diff):
             if abs(k)>2.5:
                 k=1.25*k
         prop = 0.2*d+64 + k
-        prop=50+0.5*(100-prop)
+        prop=60+0.4*(100-prop)
     elif d >= 130 and d <= 150:               ##stop motor at this distance
         prop = 100
-        prop=50
+        prop=45
     else:
         #GPIO.output(16, True)                ##robot move backward at this distance
         print("Moving backwards")
         if d >= 250:
             d = 250
         prop = 122.5 - 0.15*d
-        prop=50-0.5*(100-prop)
+        prop=40-0.4*(100-prop)
     print(f"Duty cycle motor 1={prop}")
     motor1_speed.ChangeDutyCycle(prop)       ##change duty cycle to change speed
 
@@ -231,28 +231,28 @@ def change_speed2(d,diff):
             if abs(k)>2.5:
                 k=1.25*k
         prop = 0.2*d+61 - k
-        prop=50+0.5*(100-prop)
+        prop=60+0.4*(100-prop)
     elif d >= 130 and d <= 150:           ##stop motor at this distance
         prop = 100
-        prop=50
+        prop=45
     else:
         #GPIO.output(18, False)            ##robot move backward at this distance
         if d >= 250:
             d = 250
         prop = 130 - 0.2*d
-        prop=50-0.5*(100-prop)
+        prop=40-0.4*(100-prop)
     print(f"Duty cycle motor 2={prop}")
     motor2_speed.ChangeDutyCycle(prop)          ##change duty cycle to change speed
 
 def avoid_left():
     '''when robot need to turn left to avoid obstacle'''
-    motor1_speed.ChangeDutyCycle(50)              ##control two motors to turn right 90 degree
+    motor1_speed.ChangeDutyCycle(45)              ##control two motors to turn right 90 degree
     #GPIO.output(18, False)
-    motor2_speed.ChangeDutyCycle(50-0.5*(100-75))
+    motor2_speed.ChangeDutyCycle(40-0.4*(100-75))
     time.sleep(2.4)
     #GPIO.output(18, True)
-    motor1_speed.ChangeDutyCycle(50+0.5*(100-75))
-    motor2_speed.ChangeDutyCycle(50+0.5*(100-75))
+    motor1_speed.ChangeDutyCycle(60+0.4*(100-75))
+    motor2_speed.ChangeDutyCycle(60+0.4*(100-75))
     time.sleep(1)
 
     while True:
@@ -260,25 +260,25 @@ def avoid_left():
         sensorLowerLeft = obstacle(33,35)        ##after turning right, move forward and detect whether it has passed obstacle
         print('Lower left distance is : ', sensorLowerLeft)
         #GPIO.output(18, True)
-        motor1_speed.ChangeDutyCycle(50+0.5*(100-75))
-        motor2_speed.ChangeDutyCycle(50+0.5*(100-75))
+        motor1_speed.ChangeDutyCycle(60+0.4*(100-75))
+        motor2_speed.ChangeDutyCycle(60+0.4*(100-75))
         if sensorLowerLeft > 80:                   ##after passing obstacle, turn left to back to its original track
             print('Break distance is : ', sensorLowerLeft)
             break
      
-    motor1_speed.ChangeDutyCycle(50+0.5*(100-100))              ##control two motors to turn left 90 degree
-    motor2_speed.ChangeDutyCycle(50+0.5*(100-75))
+    motor1_speed.ChangeDutyCycle(60+0.4*(100-100))              ##control two motors to turn left 90 degree
+    motor2_speed.ChangeDutyCycle(60+0.4*(100-75))
     time.sleep(0.5)
     
 def avoid_right():
     '''when robot need to turn right to avoid obstacle'''
-    motor2_speed.ChangeDutyCycle(50)              ##control two motors to turn left 90 degree
+    motor2_speed.ChangeDutyCycle(45)              ##control two motors to turn left 90 degree
     #GPIO.output(16, True)
-    motor1_speed.ChangeDutyCycle(50-0.5*(100-75))
+    motor1_speed.ChangeDutyCycle(40-0.4*(100-75))
     time.sleep(2.4)
     #GPIO.output(16 , False)
-    motor1_speed.ChangeDutyCycle(50+0.5*(100-75))
-    motor2_speed.ChangeDutyCycle(50+0.5*(100-75))
+    motor1_speed.ChangeDutyCycle(60+0.4*(100-75))
+    motor2_speed.ChangeDutyCycle(60+0.4*(100-75))
     time.sleep(1)
     
     while True:
@@ -286,14 +286,14 @@ def avoid_right():
         sensorLowerRight = obstacle(36,38)        ##after turning left, move forward and detect whether it has passed obstacle
         print('Lower right distance is : ', sensorLowerRight)
         #GPIO.output(16, False)
-        motor1_speed.ChangeDutyCycle(50+0.5*(100-75))
-        motor2_speed.ChangeDutyCycle(50+0.5*(100-75))
+        motor1_speed.ChangeDutyCycle(60+0.4*(100-75))
+        motor2_speed.ChangeDutyCycle(60+0.4*(100-75))
         if sensorLowerRight > 80:                 ##after passing obstacle, turn right to back to its original track
             print('Break distance is : ', sensorLowerRight)
             break
     
-    motor2_speed.ChangeDutyCycle(50)             ##control two motors to turn right 90 degree
-    motor1_speed.ChangeDutyCycle(50+0.5*(100-75))
+    motor2_speed.ChangeDutyCycle(60)             ##control two motors to turn right 90 degree
+    motor1_speed.ChangeDutyCycle(60+0.4*(100-75))
     time.sleep(0.5)    
 
 def getlen(po1,po2):
