@@ -341,7 +341,7 @@ def decodeDisplay(image):
             (p1,p2,p3,p4) = barcode.polygon                 ##get four points from image
             (x, y, w, h) = barcode.rect
             print("Before obstacle")
-            sensorl1 = obstacle(31,29)                     ##get distance from two front ultrasonic sensors
+            sensorl1 = obstacle(15,16)                     ##get distance from two front ultrasonic sensors
             sensorr1 = obstacle(7,11)
             print("sensorRight Distance: {}  sensorLeft Distance:{}".format(sensorr1, sensorl1))
 
@@ -457,8 +457,8 @@ if __name__ == '__main__':
     GPIO.setup(7,GPIO.OUT)    ##right ultrasonic sensor
     GPIO.setup(11,GPIO.IN)
 
-    GPIO.setup(31,GPIO.OUT)   ##left ultrasonic sensor
-    GPIO.setup(29,GPIO.IN)
+    GPIO.setup(15,GPIO.OUT)   ##left ultrasonic sensor
+    GPIO.setup(16,GPIO.IN)
 
     GPIO.setup(33,GPIO.OUT)   ##lower left ultrasonic sensor
     GPIO.setup(35,GPIO.IN)
@@ -471,7 +471,7 @@ if __name__ == '__main__':
     #GPIO.setup(16,GPIO.OUT)
     GPIO.setup(18,GPIO.OUT)   ##18, buzzer
     ##GPIO.output(16, False)
-    buzzer = GPIO.PWM(18, 5000)
+    buzzer = GPIO.PWM(18, 3000)
     motor1_speed = GPIO.PWM(12, 1000)
     motor2_speed = GPIO.PWM(13, 1000)
     buzzer.start(100)
