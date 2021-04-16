@@ -469,9 +469,9 @@ if __name__ == '__main__':
     GPIO.setup(12,GPIO.OUT)   ##12, motor on the left
     GPIO.setup(13,GPIO.OUT)   ##13, motor on the right
     #GPIO.setup(16,GPIO.OUT)
-    GPIO.setup(18,GPIO.OUT)   ##18, buzzer
+    GPIO.setup(22,GPIO.OUT)   ##22, buzzer
     ##GPIO.output(16, False)
-    buzzer = GPIO.PWM(18, 3000)
+    buzzer = GPIO.PWM(22, 3000)
     motor1_speed = GPIO.PWM(12, 1000)
     motor2_speed = GPIO.PWM(13, 1000)
     buzzer.start(100)
