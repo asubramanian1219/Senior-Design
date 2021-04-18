@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
                     /* Validate the user inputs */
-                    validate(userName, userPassword);
+                    startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                    validate(userName, userPassword); //******* UNCOMMENT THIS IS EASIER FOR TESTING
 
                 }
             }
@@ -80,10 +81,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, MapsActivity.class));
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    if(user.isEmailVerified()) {
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, TestDB.class));
+                    }else{
+                        Toast.makeText(MainActivity.this, "Email Not Verified", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Incorrect Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
         });
