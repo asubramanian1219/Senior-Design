@@ -14,10 +14,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|top"
-        android:text="New Point"
+        android:text="Start Tracking"
         android:padding="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:paddingRight="10dp"/>
+
+    <TextView android:id="@+id/tvWait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:textSize="10pt"
+        android:layout_marginBottom="8dp"/>
 
 </fragment>
 
